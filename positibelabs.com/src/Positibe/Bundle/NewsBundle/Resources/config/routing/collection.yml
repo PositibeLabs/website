@@ -1,0 +1,6 @@
+positibe_post_collection_crud:
+    resource: |
+        alias: positibe.post_collection
+        templates: PositibeNewsBundle:Collection
+        redirect: update
+    type: sylius.resource

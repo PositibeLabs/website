@@ -1,0 +1,10 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-tags' %}
+{% set menu_active = 'post' %}
+
+{% set attributes = {
+'name':{'main':true, 'filter': null, 'order': true}
+} %}
+
+{% embed '@PositibeCore/Grid/index.html.twig' %}
+{% endembed %}

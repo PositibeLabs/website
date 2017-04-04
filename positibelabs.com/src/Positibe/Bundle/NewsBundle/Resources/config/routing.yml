@@ -1,0 +1,12 @@
+_positibe_news_comment:
+    resource: "@PositibeNewsBundle/Resources/config/routing/comment.yml"
+
+_positibe_news_collection:
+    resource: "@PositibeNewsBundle/Resources/config/routing/collection.yml"
+
+_positibe_news_tag:
+    resource: "@PositibeNewsBundle/Resources/config/routing/tag.yml"
+
+_positibe_news_post:
+    resource: "@PositibeNewsBundle/Resources/config/routing/post.yml"
+

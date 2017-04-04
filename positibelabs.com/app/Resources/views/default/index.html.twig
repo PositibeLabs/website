@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block nav_image %}
+    {{ sonata_block_render({'template_position': 'nav_image'}, {'template': 'block/nav_image_index.html.twig'}) }}
+{% endblock %}
+{% block main %}
+    {{ sonata_block_render({'type': 'positibe_cms.featured_page'}, {'template': 'block/content_divider.html.twig'}) }}
+    <div class="wow bounceIn">
+        {{ sonata_block_render({'type': 'positibe_cms.pages_by_category'}, {'category': 'services', 'template':'block/contents_divider.html.twig'}) }}
+    </div>
+    <div class="wow bounceIn">
+        {{ sonata_block_render({'type': 'positibe_cms.pages_by_category'}, {'category': 'articles', 'template':'block/contents_divider.html.twig'}) }}
+    </div>
+{% endblock %}
+

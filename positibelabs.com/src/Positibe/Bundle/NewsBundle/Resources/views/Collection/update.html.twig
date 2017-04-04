@@ -1,0 +1,35 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-folder-o' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/update.html.twig' %}
+    {% block content_form %}
+        {% form_theme form.locale '@PositibeCore/FormThemes/mdb_form_theme_md.html.twig' %}
+        <div class="row">
+            <div class="col-md-9 mb-1">
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ 'post.form.configuration' | trans }}</h4>
+                        {{ form_row(form.locale) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            jQuery('#positibe_post_collection_locale').on('change', function (e) {
+                location.replace('{{ path('positibe_post_collection_update', {'id': post_collection.id}) }}?data_locale=' + $(this).val());
+            });
+        </script>
+    {% endblock %}
+{% endembed %}
+
+
+
+

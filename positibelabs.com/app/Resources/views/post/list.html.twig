@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <article class="article">
+        <h1>{{ content.title }}</h1>
+
+        <p>{{ content.body | raw }}</p>
+    </article>
+    <section class="content-list">
+        <div class="row">
+            {% for page in posts %}
+                <div class="col-xs-12">
+                    <article class="content-list-item">
+                        {% set image = page.image is not null ? cmf_media_display_url(page.image, {'imagine_filter':'page_list'}) : ('bundles/positibeormmedia/images/avatar.png' | imagine_filter('page_list')) %}
+                        <img src="{{ image }}"
+                             class="pull-left"
+                             style="margin-right: 25px;max-width: 300px; width: 100%;max-height: 160px;">
+
+                        <h3 class="title"><a href="{{ path(page) }}">{{ page.title }}</a></h3>
+
+                        <div class="read-more"><a class="btn btn-sm"
+                                                  href="{{ path(page) }}"><strong>{{ 'Leer más' | upper }}</strong></a>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+{% endblock %}

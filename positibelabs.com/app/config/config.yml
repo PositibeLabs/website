@@ -1,0 +1,144 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: '@PositibeUserBundle/Resources/config/config.yml'}
+    - { resource: '@PositibeCoreBundle/Resources/config/config.yml'}
+    - { resource: '@PositibeCmsBundle/Resources/config/config.yml' }
+    - { resource: '@PositibeMediaBundle/Resources/config/config.yml'}
+    - { resource: '@PositibeMenuBundle/Resources/config/config.yml'}
+    - { resource: '@PositibeNewsBundle/Resources/config/config.yml'}
+    - { resource: '@PositibeCmfRoutingExtraBundle/Resources/config/config.yml' }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: es
+    positibe_media.web_root: "%kernel.root_dir%/../../public_html/"
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.root_dir%/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+            - "@PositibeCore/FormThemes/mdb_form_theme.html.twig"
+
+assetic:
+    read_from: "%positibe_media.web_root%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
+            uiColor:                "#000000"
+#            filebrowserUploadRoute: "my_route"
+            extraPlugins:           "wordcount"
+
+positibe_cmf_routing_extra:
+    controllers:
+        homepage:
+            _controller: [FrameworkBundle:Template:template, {template: "index.html.twig"}]
+        default:
+            _controller: [AppBundle:Default:index, {}]
+    templates:
+        page: AppBundle:Default:index.html.twig
+
+positibe_cms:
+    template_positions: [nav_image]
+    public_routes: [homepage]
+
+
+liip_imagine:
+    resolvers:
+       default:
+           web_path:
+               web_root: "%positibe_media.web_root%"
+               cache_prefix: "%positibe_media.cache_prefix%"
+    loaders:
+       default:
+           filesystem:
+               data_root: "%positibe_media.web_root%"  # %kernel.root_dir%/../web/
+
+    filter_sets:
+        # define the filter to be used with the image preview
+        carousel_main:
+            filters:
+                thumbnail: { size: [1500, 500], mode: outbound }
+        carousel:
+            filters:
+                thumbnail: { size: [1500, 250], mode: outbound }
+
+sonata_seo:
+    page:
+        title: PositibeLabs
+        metas:
+            name:
+                description: PositibeLabs website
+                keywords: positibelabs, software development, seo
+
+sonata_cache:
+    caches:
+        apc :
+            token:  s3cur3   # token used to clear the related cache
+            prefix: positibe     # prefix to ensure there is no clash between instances
+            servers:
+                - { domain: positibelabs.com, ip: 127.0.0.1, port: 80}
+        symfony:
+            token: s3cur3 # token used to clear the related cache
+            php_cache_enabled: true # Optional (default: false), clear APC or PHP OPcache

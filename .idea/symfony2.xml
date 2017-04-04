@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Symfony2PluginSettings">
+    <option name="pathToUrlGenerator" value="positibelabs.com/var/cache/dev/appDevDebugProjectContainerUrlGenerator.php" />
+    <option name="pathToTranslation" value="positibelabs.com/var/cache/dev/translations" />
+    <option name="directoryToWeb" value="public_html" />
+    <option name="directoryToApp" value="positibelabs.com/app" />
+    <option name="pluginEnabled" value="true" />
+  </component>
+</project>

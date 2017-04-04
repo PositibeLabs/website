@@ -1,0 +1,88 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-thumb-tack' %}
+
+{% embed '@PositibeCore/Grid/show.html.twig' %}
+    {% block actions %}
+        {{ parent() }}
+        <a href="{{ path('positibe_post_comment_create', {'postName': post.name}) }}"
+           class="btn btn-sm btn-info"><i class="fa fa-comment"></i> {{ 'post_comment.list.create_new' | trans }}</a>
+    {% endblock %}
+    {% block content_body %}
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Vista previa</h4>
+                <table class="table table-striped table-bordered table-hover no-footer">
+                    {% for route in post.routes %}
+                        <tr>
+                            <td>
+                                <a href="{{ relative_path(route.getPath()) }}">{{ route.getPath() }}</a>
+                            </td>
+                            <td>{{ route.getDefault('_controller') | trans }}</td>
+                            <td>{{ (route.getDefault('_locale') | default('es')) | trans }}</td>
+                        </tr>
+
+                    {% else %}
+                        <tr>
+                            <td colspan="4">Esta página no posee rutas</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <ul class="list-inline">
+                    <li>
+                        {% for tag in post.tags %}
+                            {% if loop.index0 != 0 %}
+                                ,
+                            {% endif %}
+                            <a href="{{ path('positibe_post_tag_update', {'id': tag.id}) }}" class="badge badge-info"><i
+                                        class="fa fa-tag"></i> {{ tag.name }}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+
+                <iframe style="width: 100%; min-height: 500px"
+                        src="{{ path('positibe_admin_page_iframe', {'id': post.id}) }}"></iframe>
+                <ul class="list-inline">
+                    <li>
+                        <i class="fa fa-calendar"></i>
+                        {{ post.publishStartDate | localizeddate('long', 'none') }}
+                    </li>
+                    <li>
+                        <a href="{{ path('positibe_post_comment_index', {'criteria': {'title': post.title }}) }}">
+                            <i class="fa fa-comments"></i> {{ post.comments | length }}
+                            Comentarios
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Configuración</h4>
+                        {% if post.collections %}<p><strong>Categoría:</strong> {{ post.collections | join(', ') }}
+                            </p>{% endif %}
+                        <strong><i class="fa {% if post.state == 'published' %}fa-check text-info{% else %}fa-minus-circle text-danger{% endif %}"></i> {{ (post.state) | trans }}
+                        </strong>
+
+                        <div class="pl-3 bg-faded">
+                            <ul>
+                                {% if post.publishStartDate %}
+                                    <li><strong>A partir
+                                            del:</strong> {{ post.publishStartDate | localizeddate('medium', 'short') }}
+                                    </li>
+                                {% endif %}
+                                {% if post.publishEndDate %}
+                                    <li><strong>Despublicar
+                                            el:</strong> {{ post.publishEndDate | localizeddate('medium', 'short') }}
+                                    </li>
+                                {% endif %}
+                            </ul>
+
+                        </div>
+                        <h4 class="card-title">Categoría</h4>
+                        {{ post.collections | join(', ') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

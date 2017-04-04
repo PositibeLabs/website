@@ -1,0 +1,27 @@
+positibe_post_comment_crud:
+    resource: |
+        alias: positibe.post_comment
+        templates: PositibeNewsBundle:Comment
+        except: ["create"]
+        redirect: update
+    type: sylius.resource
+
+positibe_post_comment_create:
+    path: /comments/{postName}/new
+    methods: [GET, POST]
+    defaults:
+        _controller: positibe.controller.post_comment:createAction
+        _sylius:
+            template: PositibeNewsBundle:Comment:create.html.twig
+            factory:
+                method: createByPostName
+                arguments: [$postName]
+            redirect:
+                route: positibe_post_comment_update
+                parameters: {id: resource.id}
+
+positibe_post_comment_transition:
+    path: /comments/{id}/transition
+    methods: POST
+    defaults:
+        _controller: positibe.controller.post_comment:applyTransitionAction

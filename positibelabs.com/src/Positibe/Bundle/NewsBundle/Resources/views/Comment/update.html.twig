@@ -1,0 +1,27 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-comment' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/update.html.twig' %}
+    {% block actions %}
+        {{ parent() }}
+        {% if post_comment is defined and post_comment.id is not null %}
+            {% for state in workflow_transitions(post_comment) %}
+                {% if state.name == 'unpublish' and workflow_can(post_comment, 'unpublish') -%}
+                    <button type="submit" name="transition" value="unpublish" class="btn btn-sm"><i
+                                class="fa fa-eye-slash"></i> {{ 'post_comment.transition.unpublish' | trans }}
+                    </button>
+                {% elseif state.name == 'publish' and workflow_can(post_comment, 'publish') -%}
+                    <button type="submit" name="transition" value="{{ 'publish' }}" class="btn btn-primary"><i
+                                class="fa fa-eye"></i> {{ 'post_comment.transition.publish' | trans }}
+                    </button>
+                {%- else -%}
+                    <button type="submit" name="transition" value="{{ state.name }}" class="btn btn-sm btn-info"><i
+                                class="fa fa-eye"></i> {{ ('post_comment.transition.' ~ state.name) | trans }}
+                    </button>
+                {%- endif -%}
+            {% endfor %}
+
+        {% endif %}
+    {% endblock %}
+{% endembed %}

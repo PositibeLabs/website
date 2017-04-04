@@ -1,0 +1,13 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-tags' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/update.html.twig' %}
+    {% block javascripts %}
+        <script>
+            jQuery('#positibe_post_tag_locale').on('change', function (e) {
+                location.replace('{{ path('positibe_post_tag_update', {'id': post_tag.id}) }}?data_locale=' + $(this).val());
+            });
+        </script>
+    {% endblock %}
+{% endembed %}

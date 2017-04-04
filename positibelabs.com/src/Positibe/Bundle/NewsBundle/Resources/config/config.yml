@@ -1,0 +1,79 @@
+positibe_cmf_routing_extra:
+    controllers:
+        noticias:
+            _controller: [PositibeNewsBundle:News:list, {}]
+cmf_routing:
+    dynamic:
+        controllers_by_class:
+            # the order here matter
+            Positibe\Bundle\NewsBundle\Entity\Post: PositibeNewsBundle:News:index
+sylius_resource:
+    resources:
+        positibe.post:
+            driver: doctrine/orm
+            classes:
+                model: Positibe\Bundle\NewsBundle\Entity\Post
+                controller: Positibe\Bundle\NewsBundle\Controller\PostController
+                repository: Positibe\Bundle\NewsBundle\Entity\PostRepository
+                form: Positibe\Bundle\NewsBundle\Form\Type\PostFormType
+        positibe.post_tag:
+            driver: doctrine/orm
+            classes:
+                model: Positibe\Bundle\NewsBundle\Entity\Tag
+                controller: Positibe\Bundle\CmsBundle\Controller\ResourceController
+                repository: Positibe\Bundle\NewsBundle\Entity\TagRepository
+                form: Positibe\Bundle\NewsBundle\Form\Type\TagFormType
+        positibe.post_collection:
+            driver: doctrine/orm
+            classes:
+                model: Positibe\Bundle\NewsBundle\Entity\Collection
+                controller: Positibe\Bundle\CmsBundle\Controller\ResourceController
+                repository: Positibe\Bundle\NewsBundle\Entity\CollectionRepository
+                form: Positibe\Bundle\NewsBundle\Form\Type\CollectionFormType
+        positibe.post_comment:
+            driver: doctrine/orm
+            classes:
+                model: Positibe\Bundle\NewsBundle\Entity\Comment
+                controller: Positibe\Bundle\NewsBundle\Controller\PostController
+                repository: Positibe\Bundle\NewsBundle\Entity\CommentRepository
+                factory: Positibe\Bundle\NewsBundle\Factory\CommentFactory
+                form: Positibe\Bundle\NewsBundle\Form\Type\CommentFormType
+stof_doctrine_extensions:
+    orm:
+        default:
+            blameable: true
+doctrine:
+    orm:
+        resolve_target_entities:
+            Positibe\Bundle\NewsBundle\Entity\AuthorInterface: AppBundle\Entity\User
+
+framework:
+    workflows:
+        post_publishable:
+            type: 'state_machine' # or 'workflow'
+            marking_store:
+                type: 'single_state' # or 'multiple_state'
+                arguments:
+                    - 'state'
+            supports:
+                - Positibe\Bundle\NewsBundle\Entity\Post
+                - Positibe\Bundle\NewsBundle\Entity\Comment
+            places:
+                - draft
+                - review
+                - rejected
+                - published
+                - unpublished
+            transitions:
+                to_review:
+                    from: [draft,rejected]
+                    to:   review
+                publish:
+                    from: [review, unpublished]
+                    to:   published
+                reject:
+                    from: review
+                    to:   rejected
+                unpublish:
+                    from: published
+                    to:   unpublished

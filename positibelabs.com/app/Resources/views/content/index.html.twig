@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="h1-responsive">
+        <a href="{{ path(content) }}">{{ content.title }}</a>
+    </h1>
+    <p class="text-muted"><i class="fa fa-calendar"></i> {{ content.publishStartDate |localizeddate('long', 'none') }}</p>
+    {{ content.body |raw }}
+{% endblock %}
+
+{% block aside %}
+    {% if content.category is not null %}
+        {{ sonata_block_render({'type': 'positibe_cms.pages_by_category'}, {'category':content.category.name}) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

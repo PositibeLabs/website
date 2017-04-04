@@ -1,0 +1,75 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'glyphicon glyphicon-pushpin' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/show.html.twig' %}
+    {% block actions %}
+        {{ parent() }}
+        <div class="btn-group">
+            <form action="{{ path('positibe_post_comment_transition', {'id': post_comment.id}) }}" method="post">
+                {% for state in workflow_transitions(post_comment) %}
+                    {% if state.name == 'unpublish' and workflow_can(post_comment, 'unpublish') -%}
+                        <button type="submit" name="transition" value="unpublish" class="btn btn-sm"><i
+                                    class="fa fa-eye-slash"></i> {{ 'post_comment.transition.unpublish' | trans }}
+                        </button>
+                    {% elseif state.name == 'publish' and workflow_can(post_comment, 'publish') -%}
+                        <button type="submit" name="transition" value="{{ 'publish' }}" class="btn btn-primary"><i
+                                    class="fa fa-eye"></i> {{ 'post_comment.transition.publish' | trans }}
+                        </button>
+                    {%- else -%}
+                        <button type="submit" name="transition" value="{{ state.name }}" class="btn btn-sm btn-info"><i
+                                    class="fa fa-eye"></i> {{ ('post_comment.transition.' ~ state.name) | trans }}
+                        </button>
+                    {%- endif -%}
+                {% endfor %}
+            </form>
+        </div>
+
+    {% endblock %}
+    {% block content_body %}
+        <div class="row">
+            <div class="col-sm-8">
+                <h4>Nombre</h4>
+
+                <p>{{ post_comment.name }}</p>
+                {% if post_comment.user %}
+                    <h4>Usuario</h4>
+
+                    <p><a href="{{ path('positibe_user_show', {'id': post_comment.id}) }}">{{ post_comment.user }}</a> </p>
+                {% endif %}
+                <h4>Correo</h4>
+
+                <p>{{ post_comment.email }}</p>
+                <h4>Sitio web</h4>
+
+                <p>{{ post_comment.url }}</p>
+                <h4>Mensaje</h4>
+
+                <p>{{ post_comment.message }}</p>
+            </div>
+            <div class="col-sm-4">
+                <div class="card ">
+                    <div class="card-block">
+                        <h4 class="card-title">Configuración</h4>
+
+                        <p class="badge badge-info">{{ post_comment.state | trans }}</p>
+                        <h4>En respuesta a</h4>
+
+                        <h5>
+                            <a href="{{ path('positibe_post_show', {'id': post_comment.post.id}) }}">
+                                <i class="fa fa-newspaper-o"></i> {{ post_comment.post.title }}</a>
+                        </h5>
+                        <h4>Creado</h4>
+
+                        <p>{{ post_comment.createdAt|date('Y-m-d H:i:s') }}</p><h4>
+                            Última actualización</h4>
+
+                        <p>{{ post_comment.updatedAt|date('Y-m-d H:i:s') }}</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

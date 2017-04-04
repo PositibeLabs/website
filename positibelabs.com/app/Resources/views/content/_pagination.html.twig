@@ -1,0 +1,36 @@
+{% macro pagination(paginator, options) %}
+    <div class="row">
+        <nav class="col-12">
+            {% if paginator.haveToPaginate()|default(false) %}
+                <ul class="pagination justify-content-center">
+                    {% if paginator.currentPage == 1 %}
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">&laquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': paginator.currentPage - 1})) }}"
+                               class="page-link">&laquo;</a>
+                        </li>
+                    {% endif %}
+                    {% for number in 1..paginator.nbPages %}
+                        <li class="{% if number == paginator.currentPage %}active {% endif %}page-item">
+                            <a class="page-link"
+                               href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': number})) }}">{{ number }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if paginator.currentPage == paginator.nbPages %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">»</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': paginator.currentPage + 1})) }}">&raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </nav>
+    </div>
+{% endmacro %}

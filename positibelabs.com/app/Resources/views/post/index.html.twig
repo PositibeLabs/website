@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>{{ post.title }}</h2>
+    {% if post.image is not null %}
+        <img class="img-fluid" style="background: rgba(0, 0, 0, 0.4);"
+             src="{{ display_image(post.image, {'imagine_filter': 'carousel'}) }}"
+             title="{{ post.image }}">
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-inline">
+                <li>
+                    <i class="fa fa-tags"></i>
+                    {% for tag in post.tags %}
+                        {% if loop.index0 != 0 %}
+                            ,
+                        {% endif %}
+                        {#<a href="{{ path('tag') }}">{{ tag.name }}</a>#}
+                        {{ tag.name }}
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 text-right">
+            <ul class="list-inline">
+                <li>
+                    <i class="fa fa-calendar"></i>
+                    {{ post.publishStartDate | localizeddate('long', 'none') }}
+                </li>
+                <li>
+                    <a href="{{ path('positibe_post_comment_index', {'criteria': {'title': post.title }}) }}">
+                        <i class="fa fa-comments"></i> {{ post.comments | length }}
+                        Comentarios
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ post.body | raw }}
+    <div class="card mb-2">
+        <div class="card-block p-5">
+            <h3 class="h3-responsive text-center card-title">{{ 'news.index.about_author' | trans }}</h3>
+            <hr>
+
+            <div class="row">
+                <div class="col-12 col-sm-2">
+                    <img alt="{{ post.author }}"
+                         src="{{ display_image(post.author.avatar, {'imagine_filter': 'image_thumbnail'}) }}"
+                         class="avatar img-fluid rounded-circle z-depth-2 photo" height="150" width="150">
+                </div>
+
+                <div class="col-12 col-sm-10">
+
+                    <p><strong>{{ post.author }}</strong></p>
+
+                    <div class="personal-sm">
+                    </div>
+                    <p>{{ post.author.sign | raw }}</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="comments">
+        <h4 class="h4-responsive">{{ 'news.index.comments' | trans }}</h4>
+
+        <div class="media-body">
+            {% for comment in post.comments %}
+                <h5 class="media-heading">
+                    <a href="{{ comment.url }}" nofollow>{{ comment.name }}</a>
+                    <span class="pull-right text-muted">
+                        {{ comment.createdAt | localizeddate('long', 'medium') }}
+                    </span>
+                </h5>
+                <p>
+                    {{ comment.message }}
+                </p>
+                <hr>
+            {% else %}
+                <div class="alert alert-warning">
+                    {{ 'news.index.comments_empty' | trans }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <h4>{{ 'news.index.comment_form' | trans }}</h4>
+    </div>
+    {{ form_start(formComment) }}
+    {{ form_widget(formComment) }}
+    {{ form_widget(formComment) }}
+    {{ form_widget(formComment) }}
+    {{ form_widget(formComment) }}
+    <button class="btn btn-info">{{ 'news.index.send' | trans }}</button>
+    {{ form_end(formComment) }}
+{% endblock %}

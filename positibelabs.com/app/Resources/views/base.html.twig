@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="favicon.ico">
+
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
+    {{ sonata_seo_link_canonical() }}
+
+    {% stylesheets
+    'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/bootstrap.min.css'
+    'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/mdb.min.css'
+    'backend/psb-mdbootstrap-theme/font-awesome-4.3.0/css/font-awesome.min.css'
+    'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/style.css'
+    filter='cssrewrite' output='css/compiled/main.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    <link href="{{ asset('frontend/frontend.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block navbar %}
+    <header class="main-header">
+        <nav class="navbar navbar-toggleable-md navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('homepage') }}">
+                    <img src="{{ asset('backend/psb-mdbootstrap-theme/image/positibelabs_logotipo_background.png') }}"
+                         class="d-inline-block align-top z-depth-0 img-fluid " alt="PositibeLabs">
+                    <strong class="green-text text-darken-3 flow-text">Positibe<span
+                                class="orange-text">Labs</span></strong>
+                </a>
+
+                <div class="collapse navbar-collapse" id="collapseEx2">
+                    {{ knp_menu_render('main') }}
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+{% block nav_image %}
+    {{ sonata_block_render({'template_position': 'nav_image'}, {'template': 'block/nav_image.html.twig'}) }}
+{% endblock %}
+<main>
+
+    <div class="container">
+        {% block main %}
+            <div class="row">
+                <div class="col-sm-9">
+
+                    {% block body %}
+                    {% endblock %}
+                </div>
+                <div class="col-sm-3">
+                    <div class="mt-2">
+                        {% block aside %}
+                            {{ sonata_block_render({'type': 'positibe_cms.pages_by_category'}, {'category': 'news'}) }}
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+</main>
+<footer class="page-footer blue-grey">
+
+    <div class="container mb-1">
+        <div class="row">
+            <div class="col-4">
+
+                <h5>Sobre PositibeLabs</h5>
+            </div>
+            <div class="col-4">
+                <h5>Vínculos relacionados</h5>
+                {{ knp_menu_render('footer') }}
+            </div>
+        </div>
+    </div>
+    {#<hr>#}
+    {#<div class="call-to-action">#}
+    {#<h4>PositibeLabs Project</h4>#}
+    {#<ul>#}
+    {#<li>#}
+    {#<h5>Involucrate en el proyecto</h5></li>#}
+    {#<li>#}
+    {#<a href="{{ path('fos_user_security_login') }}" class="btn btn-danger">Registrate!</a>#}
+    {#</li>#}
+    {#<li>#}
+    {#<a target="_blank" href="http://docs.positibelabs.com" class="btn btn-default">Documentación oficial</a>#}
+    {#</li>#}
+    {#</ul>#}
+    {#</div>#}
+    <div class="footer-copyright">
+        <div class="container">
+            Powered by
+            <a class="brown-text text-lighten-3" href="http://www.positibelabs.com">PositibeLabs.com</a>
+        </div>
+    </div>
+</footer>
+
+{% javascripts
+'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/jquery-3.1.1.min.js'
+'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/mdb.min.js'
+'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/tether.js'
+'backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/bootstrap.min.js'
+output='js/compiled/main.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% javascripts
+'bundles/positibemedia/bootstrap-fileupload/bootstrap-fileupload.js'
+'bundles/positibecore/js/init_form_collection.js'
+output='js/compiled/custom.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{#<!--  Scripts-->#}
+{#<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/jquery-3.1.1.min.js') }}"></script>#}
+{#<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/mdb.min.js') }}"></script>#}
+{#<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/tether.js') }}"></script>#}
+{#<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/bootstrap.min.js') }}"></script>#}
+{# Boostrap Fileupaload #}
+{#<script src="{{ asset('bundles/positibemedia/bootstrap-fileupload/bootstrap-fileupload.js') }}" type="application/javascript"></script>#}
+{#<script src="{{ asset('bundles/positibecore/js/init_form_collection.js') }}" type="application/javascript"></script>#}
+
+<script src="{{ asset('backend/backend.js') }}"></script>
+<script>
+    $(document).ready(function () {
+//        $(".button-collapse").sideNav();
+        app.initFormCollection();
+    });
+
+</script>
+<script>
+    new WOW().init();
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

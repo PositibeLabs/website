@@ -1,0 +1,17 @@
+positibe:
+    post:
+        create: La entrada se ha creado con éxito.
+        update: La entrada se ha actualizado con éxito.
+        delete: La entrada se ha eliminado con éxito.
+    post_tag:
+        create: La etiqueta se ha creado con éxito.
+        update: La etiqueta se ha actualizado con éxito.
+        delete: La etiqueta se ha eliminado con éxito.
+    post_comment:
+        create: El comentario se ha creado con éxito.
+        update: El comentario se ha actualizado con éxito.
+        delete: El comentario se ha eliminado con éxito.
+    post_collection:
+        create: La categoría se ha creado con éxito.
+        update: La categoría se ha actualizado con éxito.
+        delete: La categoría se ha eliminado con éxito.

@@ -1,0 +1,15 @@
+<div class="divider-new">
+    <h2 class="h2-responsive wow bounceIn"
+        style="visibility: visible; animation-name: bounceIn;">{{ category.title }}</h2>
+</div>
+<section id="about" class="text-center wow bounceIn" data-wow-delay="0.2s"
+         style="visibility: visible; animation-delay: 0.2s; animation-name: bounceIn;">
+    <div class="row">
+        {% for content in contents %}
+            <div class="col-md-{{ 12 / (contents | length) }}">
+                <a href="{{ path(content) }}" class="content-title">{{ content.title|raw }}</a>
+                <p class="content-body">{{ content.body | striptags| raw  | truncate(150) |raw  }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>

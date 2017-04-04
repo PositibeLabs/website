@@ -1,0 +1,11 @@
+positibe_post_crud:
+    resource: |
+        alias: positibe.post
+        templates: PositibeNewsBundle:Post
+        redirect: update
+    type: sylius.resource
+
+
+positibe_admin_page_iframe:
+    path: /posts_iframe/{id}
+    defaults: { _controller: "positibe.controller.post:iframeAction" }

@@ -1,0 +1,12 @@
+post_comment_create:
+    path: /{postName}/new
+    methods: [GET, POST]
+    defaults:
+        _controller: positibe.controller.post_comment:createAction
+        _sylius:
+            template: PositibeNewsBundle:Comment:create.html.twig
+            factory:
+                method: createByPostName
+                arguments: [$postName]
+            redirect:
+                route: referer

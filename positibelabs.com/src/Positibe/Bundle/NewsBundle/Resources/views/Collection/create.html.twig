@@ -1,0 +1,14 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-folder-o' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/create.html.twig' %}
+    {% block content_form %}
+        <div class="row">
+            <div class="col-md-9 mb-1">
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

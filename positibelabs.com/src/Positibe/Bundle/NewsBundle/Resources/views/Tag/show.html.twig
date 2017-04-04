@@ -1,0 +1,12 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'glyphicon glyphicon-pushpin' %}
+{% set menu_active = 'post' %}
+
+{% embed '@PositibeCore/Grid/show.html.twig' %}
+    {% block content_body %}
+        <h4>Nombre</h4>
+
+        <p>{{ post_tag.name }}</p>
+
+    {% endblock %}
+{% endembed %}

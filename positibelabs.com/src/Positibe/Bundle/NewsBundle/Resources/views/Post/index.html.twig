@@ -1,0 +1,135 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-thumb-tack' %}
+{% set attributes = {
+'title':{'main':true, 'filter': null, 'order': true},
+'author':{},
+'collections':{'type': 'join'},
+'tags':{'type': 'join'},
+'state':{'trans': '', 'filter': {'draft':'draft','review':'review','published':'published','rejected':'rejected','unpublished':'unpublished'},'order': true},
+'featured':{'type': 'boolean','filter': 'boolean', 'order': true},
+} %}
+
+{% embed '@PositibeCore/Grid/index.html.twig' %}
+{% endembed %}
+
+{#{% extends '@PositibeCmf/layout.html.twig' %}#}
+
+    {#{% from '@PositibeCmf/_macros.html.twig' import pagination %}#}
+    {#{% import '@PositibeCmf/_buttons.html.twig' as buttons %}#}
+
+    {#{% block title %}Entradas{% endblock %}#}
+    {#{% block subtitle %}Lista de entradas{% endblock %}#}
+    {#{% set menu_active = 'post' %}#}
+    {#{% set content_menu = 'post' %}#}
+
+    {#{% block breadcrumb_list %}#}
+        {#<li>#}
+            {#<i class="fa fa-angle-right"></i>#}
+            {#<a href="{{ path('positibe_post_index') }}">Entradas</a>#}
+        {#</li>#}
+    {#{% endblock %}#}
+
+    {#{% block content -%}#}
+        {#<form action="" method="get" id="form_post_filter" name="criteria"></form>#}
+        {#<div class="portlet light">#}
+            {#<div class="portlet-title">#}
+                {#<div class="caption">#}
+                    {#<p class="caption-subject font-green-sharp bold uppercase"><i class="glyphicon glyphicon-pushpin"></i> Entradas#}
+                    {#</p>#}
+                {#</div>#}
+                {#<div class="actions">#}
+                    {#<a href="{{ path('positibe_post_create') }}"#}
+                       {#class="btn btn-sm btn-default btn-circle"><i#}
+                                {#class="fa#}
+        {#fa-plus"></i> Crear nueva entradas</a>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="portlet-body">#}
+                {#{{ pagination(posts) }}#}
+                {#<table class="table table-striped table-bordered table-hover">#}
+                    {#<tr>#}
+                        {#<th style="width: 60px">No.</th>#}
+                        {##}
+                        {#<th style="width: 95px">Acciones</th>#}
+                    {#</tr>#}
+                    {#<tr>#}
+                        {#<th></th>#}
+                        {#<th>#}
+                            {#<input class="input-sm form-control" form="form_post_filter" name="criteria[title]"#}
+                                   {#value="{{ app.request.get('criteria').title | default() }}">#}
+                        {#</th>#}
+                        {#<th></th>#}
+                        {#<th></th>#}
+                        {#<th></th>#}
+                        {#<th></th>#}
+                        {#<th></th>#}
+                        {#<th>#}
+                            {#<div class="input-group-btn">#}
+                                {#<button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"#}
+                                        {#form="form_post_filter"><i#}
+                                            {#class="fa fa-search"></i> Filtrar#}
+                                {#</button>#}
+                            {#</div>#}
+                        {#</th>#}
+                    {#</tr>#}
+                    {#{% set count = posts.maxPerPage * (posts.currentPage - 1) %}#}
+                    {#{% for post in posts %}#}
+                        {#<tr>#}
+                            {#<td>{{ count + loop.index }}</td>#}
+                            {#<td><a href="{{ path('positibe_post_update', { 'name': post.name }) }}">{{ post.title }}</a>#}
+                            {#</td>#}
+                            {#<td>{{ post.author.getName() }}</td>#}
+                            {#<td>{% for collection in post.collections %}#}
+                                    {#{% if loop.index0 != 0 %}#}
+                                        {#,#}
+                                    {#{% endif %}#}
+                                    {#<a href="{{ path('positibe_post_collection_update', {'slug': collection.slug}) }}">{{ collection.name }}</a>#}
+                                {#{% endfor %}#}
+                            {#</td>#}
+                            {#<td>{% for tag in post.tags %}#}
+                                    {#{% if loop.index0 != 0 %}#}
+                                        {#,#}
+                                    {#{% endif %}#}
+                                    {#<a href="{{ path('positibe_post_tag_update', {'slug': tag.slug}) }}">{{ tag.name }}</a>#}
+                                {#{% endfor %}#}
+                            {#</td>#}
+                            {#<td>{% if post.publishable %}#}
+                                    {#{% if post.publishStartDate %}#}
+                                        {#<span class="label label-success">#}
+                                            {#A partir: {{ post.publishStartDate|localizeddate('medium', 'medium') }}#}
+                                            {#</span>#}
+                                    {#{% else %}#}
+                                        {#<span class="label label-success">Publicado siempre</span>#}
+                                    {#{% endif %}#}
+                                {#{% else %}#}
+                                    {#<span class="label label-warning yell">No publicada</span>#}
+                                {#{% endif %}</td>#}
+                            {#<td>#}
+                                {#{{ post.featured ? '<i class="font-yellow fa fa-star"></i>' : '' }}#}
+                            {#</td>#}
+                            {#<td>#}
+                                {#<div class="input-group">#}
+                                    {#<a class="btn btn-default btn-xs"#}
+                                       {#href="{{ path('positibe_post_show', { 'name': post.name }) }}"><i#}
+                                                {#class="fa fa-search"></i> Detalles</a>#}
+                                    {#<a class="btn btn-default btn-xs"#}
+                                       {#href="{{ path('positibe_post_update', { 'name': post.name }) }}"><i#}
+                                                {#class="fa fa-edit"></i> Editar</a>#}
+                                    {#<a class="btn btn-default btn-xs"#}
+                                       {#href="{{ path('positibe_post_comment_create', { 'postName': post.name }) }}"><i#}
+                                                {#class="fa fa-comment"></i> Crear comentario</a>#}
+
+                                {#</div>#}
+                            {#</td>#}
+                        {#</tr>#}
+                    {#{% else %}#}
+                        {#<tr>#}
+                            {#<td colspan="10">No hay elementos</td>#}
+                        {#</tr>#}
+                    {#{% endfor %}#}
+                {#</table>#}
+                {#{{ pagination(posts) }}#}
+            {#</div>#}
+        {#</div>#}
+
+    {#{% endblock %}#}

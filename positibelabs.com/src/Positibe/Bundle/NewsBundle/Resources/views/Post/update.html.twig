@@ -1,0 +1,41 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-thumb-tack' %}
+
+{% embed '@PositibeCore/Grid/update.html.twig' %}
+    {% block actions %}
+        {{ parent() }}
+        <a href="{{ path('positibe_post_comment_create', {'postName': post.name}) }}"
+           class="btn btn-sm btn-info"><i class="fa fa-comment"></i> {{ 'post_comment.list.create_new' | trans }}</a>
+
+        {% if post is defined and post.id is not null %}
+            {% for state in workflow_transitions(post) %}
+                {% if state.name == 'unpublish' and workflow_can(post, 'unpublish') -%}
+                    <button type="submit" name="transition" value="unpublish" class="btn btn-sm"><i
+                                class="fa fa-eye-slash"></i> {{ 'post.transition.unpublish' | trans }}
+                    </button>
+                {% elseif state.name == 'publish' and workflow_can(post, 'publish') -%}
+                    <button type="submit" name="transition" value="{{ 'publish' }}" class="btn btn-primary"><i
+                                class="fa fa-eye"></i> {{ 'post.transition.publish' | trans }}
+                    </button>
+                {%- else -%}
+                    <button type="submit" name="transition" value="{{ state.name }}" class="btn btn-sm"><i
+                                class="fa fa-eye"></i> {{ ('post.transition.' ~ state.name) | trans }}
+                    </button>
+                {%- endif -%}
+            {% endfor %}
+
+        {% endif %}
+    {% endblock %}
+
+    {% block content_form %}
+        {{ include('@PositibeNews/Post/_form.html.twig') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            jQuery('#positibe_post_locale').on('change', function (e) {
+                location.replace('{{ path('positibe_post_update', {'id': post.id}) }}?data_locale=' + $(this).val());
+            });
+        </script>
+    {% endblock %}
+{% endembed %}

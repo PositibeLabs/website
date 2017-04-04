@@ -1,0 +1,6 @@
+positibe_post_tag_crud:
+    resource: |
+        alias: positibe.post_tag
+        templates: PositibeNewsBundle:Tag
+        redirect: update
+    type: sylius.resource

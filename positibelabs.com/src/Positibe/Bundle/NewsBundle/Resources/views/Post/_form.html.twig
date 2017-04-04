@@ -1,0 +1,68 @@
+{% form_theme form '@PositibeCore/FormThemes/mdb_form_theme_md.html.twig' %}
+
+<div class="row">
+    <div class="col-md-9 mb-1">
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-title"><h4 class="card-title">{{ 'post.form.main' | trans }}</h4></li>
+            <li class="nav-item">
+                <a href="#form_post_tab_basic" data-toggle="tab" aria-expanded="true"
+                   class="nav-link active">
+                    {{ 'post.form.content' | trans }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#form_post_tab_seo" data-toggle="tab" aria-expanded="false" class="nav-link">
+                    {{ 'post.form.meta' | trans }}
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content mt-2">
+            <div class="tab-pane active" id="form_post_tab_basic">
+                {{ form_row(form.title) }}
+                {{ form_widget(form.body) }}
+            </div>
+            <div class="tab-pane" id="form_post_tab_seo">
+                {{ form_widget(form.routes) }}
+                {{ form_errors(form.seoMetadata) }}
+                {{ form_widget(form.seoMetadata) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">{{ 'post.form.configuration' | trans }}</h4>
+
+                <p class="badge badge-info">{{ (post.state) | trans }}</p>
+                {{ form_row(form.locale) }}
+                {{ form_row(form.collections) }}
+                {{ form_widget(form.image) }}
+                {% if form.name is defined %}
+                    <div class="md-form md-form-vertical has-warning">
+                        {{ form_widget(form.name, {'help': 'post.form.name_help' | trans}) }}
+                        {{ form_errors(form.name) }}
+                        {{ form_label(form.name) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card mt-1">
+            <div class="card-block">
+                <h4 class="card-title">{{ 'post.form.publish_header' | trans }}</h4>
+                {{ form_row(form.featured) }}
+                {{ form_row(form.commentsEnabled) }}
+                {{ form_row(form.publishStartDate, {'icon': 'fa fa-calendar'}) }}
+                {{ form_row(form.publishEndDate, {'icon': 'fa fa-calendar'}) }}
+            </div>
+        </div>
+        <div class="card mt-1">
+            <div class="card-block">
+                <h4 class="card-title">{{ 'post.form.tags_header' | trans }}</h4>
+                {% if form.tags.tags is defined %}
+                    {{ form_row(form.tags.tags) }}
+                {% endif %}
+                {{ form_row(form.tags.csv,{'help': 'post.form.tags_help' | trans}) }}
+            </div>
+        </div>
+    </div>
+</div>

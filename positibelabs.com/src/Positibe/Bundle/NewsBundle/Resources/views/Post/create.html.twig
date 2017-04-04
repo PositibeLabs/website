@@ -1,0 +1,8 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-thumb-tack' %}
+
+{% embed '@PositibeCore/Grid/create.html.twig' %}
+    {% block content_form %}
+        {{ include('@PositibeNews/Post/_form.html.twig') }}
+    {% endblock %}
+{% endembed %}

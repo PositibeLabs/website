@@ -1,0 +1,157 @@
+approved: Aprobado
+rejected: Rechazado
+pending: Pendiente
+draft: Borrador
+review: En revisión
+rejected: Rechazado
+published: Publicado
+unpublished: Despublicado
+news:
+    list:
+        comments: Comentarios
+        read_more: Leer más
+    index:
+        comments: Comentarios
+        comments_empty: No hay comentarios en esta entrada. Se el primero en comentar
+        send: Enviar
+        comment_form: Deja un comentario
+        about_author: Sobre el autor
+post:
+    transition:
+        to_review: Pasar a revisión y guardar
+        reject: Rechazar y guardar
+        publish: Publicar y guardar
+        unpublish: Despublicar y guardar
+    breadcrumbs:
+        index: Entradas
+        create: Nueva entrada
+    form:
+        legend: Formulario
+        main: Datos de la entrada
+        content: Contenido
+        meta: Meta
+        configuration: Configuración
+        name_help: Puede que este valor esté en uso
+        publish_header: Publicar
+        tags_header: Etiquetas
+        tags_add: Añadir etiquetas
+        tags_others: Otras etiquetas
+        tags_help: Separe las etiquetas por comas
+        title_label: Título
+        body_label: Contenido
+        locale_label: Idioma
+        publishable_label: Publicar noticia
+        publish_start_label: Publicar a partir de
+        publish_end_label: Despublicar en
+        image_label: Portada
+        featured_label: Noticia destacada
+        tags_label: Etiquetas
+        collection_label: Categoría
+        commentsEnabled_label: Permitir comentario
+    list:
+        page_title: Entradas
+        page_subtitle: Lista de entradas
+        create_new: Crear nueva entrada
+    table:
+        title: Título
+        author: Autor
+        collections: Categorías
+        tags: Etiquetas
+        publishable: Publicado
+        state: Estado
+        featured: Desctacado
+    create:
+        page_title: Nueva entrada
+        page_subtitle: Crear entrada
+    update:
+        page_title: Entrada
+        page_subtitle: Editar entrada
+    show:
+        page_title: Entrada
+post_tag:
+    breadcrumbs:
+        index: Etiquetas de entradas
+        create: Nueva etiqueta
+    form:
+        legend: Formulario
+        name_label: Nombre
+        locale_label: Idioma
+    list:
+        page_title: Etiquetas de entradas
+        page_subtitle: Listado de etiquetas
+        create_new: Crear nueva etiqueta
+    table:
+        name: Nombre
+    create:
+        page_title: Nueva etiquetas de entradas
+        page_subtitle: Crear etiqueta de entradas
+    update:
+        page_title: Etiqueta de entradas
+        page_subtitle: Editar etiquetas de entradas
+    show:
+        page_title: Etiquetas de entradas
+post_comment:
+    state:
+        draft: Borrador
+        review: En moderación
+        rejected: Rechazado
+        published: Aprobado
+        unpublished: Desaprobado
+    transition:
+        to_review: Pasar a aprobación y guardar
+        reject: Rechazar y guardar
+        publish: Aprobar y guardar
+        unpublish: Desaprobar y guardar
+    form:
+        legend: Formulario
+        name_label: Nombre
+        email_label: Correo
+        url_label: Sitio web
+        message_label: Comentario
+        status_label: Estado
+    breadcrumbs:
+        index: Comentarios de entradas
+        create: Nuevo comentario
+    list:
+        page_title: Comentario de entradas
+        page_subtitle: Listado de comentarios
+        create_new: Crear nueva comentario
+    table:
+        name: Nombre
+        email: Correo
+        url: Sitio web
+        message: Comentario
+        state: Estado
+        post: Entradas
+    create:
+        page_title: Nuevo comentario de entradas
+        page_subtitle: Crear comentario de entradas
+    update:
+        page_title: Comentario de entradas
+        page_subtitle: Editar comentario de entradas
+    show:
+        page_title: Comentario de entradas
+post_collection:
+    breadcrumbs:
+        index: Categorías de entradas
+        create: Nueva categoría
+    form:
+        legend: Formulario
+        name_label: Nombre
+        description_label: Descripción
+        locale_label: Idioma
+    list:
+        page_title: Categorías de entradas
+        page_subtitle: Listado de categorías
+        create_new: Crear nueva categoría
+    table:
+        name: Nombre
+        description: Descripción
+    create:
+        page_title: Nueva categoría de entradas
+        page_subtitle: Crear categoría de entradas
+    update:
+        page_title: Categoría de entradas
+        page_subtitle: Editar categoría de entradas
+    show:
+        page_title: Categoría de entradas

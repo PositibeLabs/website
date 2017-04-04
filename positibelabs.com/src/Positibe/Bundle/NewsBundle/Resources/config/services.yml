@@ -1,0 +1,34 @@
+services:
+    positibe_news.block_last_news:
+        class: Positibe\Bundle\NewsBundle\Block\LastNewsBlockService
+        arguments: ["positibe_news.block_last_news", "@templating", "@positibe.repository.post"]
+        tags:
+            - { name: sonata.block }
+
+    positibe_news.post_tag.form:
+        class: Positibe\Bundle\NewsBundle\Form\Type\TagFormType
+        arguments: ["%locales%"]
+        tags:
+            - { name: form.type }
+
+    positibe_news.post_collection.form:
+        class: Positibe\Bundle\NewsBundle\Form\Type\CollectionFormType
+        arguments: ["%locales%"]
+        tags:
+            - { name: form.type, alias: positibe_post_collection }
+
+    positibe.post_comment.form.type:
+        class: Positibe\Bundle\NewsBundle\Form\Type\CommentFormType
+        arguments: ["@security.authorization_checker"]
+        tags:
+            - { name: form.type, alias: positibe_post_comment }
+
+    positibe.factory.post_comment:
+        class: Positibe\Bundle\NewsBundle\Factory\CommentFactory
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    positibe_news.comment_event_listener:
+        class: Positibe\Bundle\NewsBundle\EventListener\CommentEventListener
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_subscriber }

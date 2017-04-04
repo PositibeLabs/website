@@ -1,0 +1,180 @@
+{% extends '@PositibeCms/layout.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block subtitle %}Administración{% endblock %}
+{% set menu_active = null %}
+{% set content_menu = null %}
+
+{% block content %}
+    <div class="card-block">
+        <h3>Contenido</h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card">
+                    <a href="{{ path('positibe_page_index') }}" class="red lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-files-o"></i> {{ 'Páginas'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_category_index') }}" class="green lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-folder"></i> {{ 'Categorías'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_menu_index') }}" class="blue lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-sitemap"></i> {{ 'Menús'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_block_index') }}" class="purple lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-cubes"></i> {{ 'Bloques'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h3>Blog</h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card">
+                    <a href="{{ path('positibe_post_index') }}" class="red lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-thumb-tack"></i> {{ 'Entrada'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_post_collection_index') }}" class="green lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-folder"></i> {{ 'Categorías'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_post_tag_index') }}" class="blue lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-tag"></i> {{ 'Etiquetas'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                    <a href="{{ path('positibe_post_comment_index') }}" class="purple lighten-3 white-text">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <h2><i class="fa fa-comment"></i> {{ 'Comentarios'|trans }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h3>Tareas</h3>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="btn btn-lg btn-primary apc-cache-clear" href="">
+                    Limpiar APC
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="btn btn-lg btn-primary symfony-cache-clear" href="">
+                    Limpiar Symfony Cache
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.apc-cache-clear').on('click', function (e) {
+                e.preventDefault();
+                $(this).text('{{ 'Limpiando APC' }}');
+                $(this).addClass('disabled');
+
+                $.ajax({
+                    url: "{{ path('sonata_cache_apc', {'token': 's3cur3'}) }}",
+                    success: function (data, textStatus, jqXHR) {
+                        $('.apc-cache-clear').text('{{ 'Cache limpiada' }}');
+                    },
+                    error: function (error) {
+                        $('.apc-cache-clear').text('{{ 'No se pudo limpiar la cache' }}');
+                    },
+                    complete: function () {
+                        setTimeout(function () {
+                            $('.apc-cache-clear').text('{{ 'Limpiar APC' }}');
+                            $('.apc-cache-clear').removeClass('disabled');
+                        }, 2000);
+
+                    }
+                })
+            });
+            $('.symfony-cache-clear').on('click', function (e) {
+                e.preventDefault();
+                $(this).text('{{ 'Limpiando Symfony Cache' }}');
+                $(this).addClass('disabled');
+
+                $.ajax({
+                    url: "{{ path('sonata_cache_symfony', {'token': 's3cur3', 'type': 'all'}) }}",
+                    success: function (data, textStatus, jqXHR) {
+                        $('.symfony-cache-clear').text('{{ 'Cache limpiada' }}');
+                    },
+                    error: function (error) {
+                        $('.symfony-cache-clear').text('{{ 'No se pudo limpiar la cache' }}');
+                    },
+                    complete: function () {
+                        setTimeout(function () {
+                            $('.symfony-cache-clear').text('{{ 'Limpiar Symfony Cache' }}');
+                            $('.symfony-cache-clear').removeClass('disabled');
+                        }, 2000);
+
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

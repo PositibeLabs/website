@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-material-design-master/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="bootstrap-material-design-master/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="bootstrap-material-design-master/css/style.css" rel="stylesheet">
+    <!--<link href="docs.css" rel="stylesheet">-->
+    <style>
+        .highlight {
+            margin-top: -16px;
+            margin-left: 0;
+            margin-right: 0;
+            border-width: 1px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            display: block;
+            padding: 9px 14px;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+
+        .highlight pre {
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            background-color: transparent;
+            border: 0;
+            white-space: nowrap;
+        }
+
+        .highlight pre code {
+            font-size: inherit;
+            color: #333;
+        }
+
+        .nt {
+            color: #2f6f9f;
+        }
+
+        .na {
+            color: #4f9fcf;
+        }
+
+        .nw {
+            color: #468847;
+        }
+
+        .nc {
+            color: #999;
+        }
+
+        .s {
+            color: #d44950;
+        }
+
+        .t1 {
+            padding-left: 1pc;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Positibe Theme MDBootstrap</h1>
+
+    <div class="card">
+        <div class="card-block">
+            <div class="card-title">
+                <h3>Plantilla base</h3>
+            </div>
+            <div class="card-text">
+                <div class="highlight">
+                    <pre>
+                        <code class="html">
+                            <span class="nt">&lt;!DOCTYPE</span> <span class="na">html</span><span class="nt">
+                            &gt;</span><br>
+                            <span class="nt">&lt;head&gt;</span><br>
+                            <span class="t-1">
+                                <span class="t1"><span class="nt">&lt;meta</span> <span
+                                        class="na">http-equiv=</span><span class="s">"Content-Type"</span>
+                                    <span class="t1"><span class="na">content=</span><span class="s">"text/html;</span>
+                                        <span class="na">charset=UTF-8"</span><span
+                                                class="nt">/&gt;</span></span><br>
+                                    <span class="t1"><span class="nt">&lt;meta</span> <span class="na">name=</span><span
+                                            class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width,
+                                        initial-scale=1, maximum-scale=1.0, user-scalable=no"</span><span
+                                            class="nt">/&gt;</span></span><br>
+                                    <span class="t1"><span class="nt">&lt;link</span> <span class="na">rel=</span><span
+                                            class="s">"icon"</span> <span class="na">href=</span><span
+                                            class="s">"favicon.ico"</span><span class="nt">&gt;</span></span><br>
+
+                                    <span class="t1"><span class="nc">&lt;!-- Font Awesome --&gt;</span></span><br>
+                                    <span class="t1"><span class="nt">&lt;link</span> <span class="na">rel=</span><span
+                                            class="s">"stylesheet"
+                                        <span class="t1"><span class="na">rel=</span>href=</span><span class="s">"{{
+                                            asset('backend/psb-mdbootstrap-theme/font-awesome-4.3.0/css/font-awesome.min.css')
+                                            }}"</span><span class="nt">&gt;</span></span><br>
+
+                                        <span class="t1"><span class="nc">&lt;!-- Bootstrap core CSS
+                                            --&gt;</span></span><br>
+                                        <span class="t1"><span class="nt">&lt;link</span> <span
+                                                class="na">href=</span><span class="s">"{{
+                                            asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/bootstrap.min.css')
+                                            }} <span class="na">rel=</span>rel=</span><span
+                                                class="s">"stylesheet"</span><span
+                                                class="nt">&gt;</span></span><br>
+
+                                        <span class="t1"><span class="nc">&lt;!-- Material Design Bootstrap
+                                            --&gt;</span></span><br>
+                                        <span class="t1"><span class="nt">&lt;link</span> <span
+                                                class="na">href=</span><span class="s">"{{
+                                            asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/mdb.min.css')
+                                            }}" <span class="na">rel=</span>rel=</span><span
+                                                class="s">"stylesheet"</span><span
+                                                class="nt">&gt;</span></span><br>
+                                        <span class="t1"><span class="nt">&lt;link </span> <span class="na">href=</span><span
+                                                class="s">"{{
+                                            asset('bundles/positibemedia/jquery-file-upload/css/file-upload.all.min.css')
+                                            }}" <span
+                                                    class="na">rel=</span>rel=</span><span class="s">"stylesheet"</span><span
+                                                class="nt">&gt;</span></span><br>
+                                        <span class="t1"><span class="nt">&lt;link </span> <span class="na">href=</span><span
+                                                class="s">"{{
+                                            asset('bundles/positibemedia/css/media.css') }}" <span
+                                                    class="na">rel=</span>rel=</span><span
+                                                class="s">"stylesheet"&gt;</span></span><br>
+
+                                        <span class="t1"><span class="nt">&lt;link </span> <span class="na">href=</span><span
+                                                class="s">"{{
+                                            asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/style.css')
+                                            }}" <span class="na">rel=</span>rel=</span><span
+                                                class="s">"stylesheet"</span><span
+                                                class="nt">&gt;</span></span><br>
+                                        <span class="t1"><span class="nt">&lt;link </span> <span class="na">href=</span><span
+                                                class="s">"{{
+                                            asset('assets/css/backend.css') }}" <span
+                                                    class="na">rel=</span>rel=</span><span
+                                                class="s">"stylesheet"</span><span class="nt">&gt;</span></span><br>
+                                        <span class="t1"><span class="nw"> {% block stylesheets %}{% endblock %}</span></span><br>
+                                    </span>
+
+                                    <span class="nt">&lt;/head&gt;</span></span><br>
+                                <span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"blue-grey
+                                lighten-5"</span><span class="nt">&gt;</span></span><br>
+                            <span class="t1"><span class="nc">&lt!-- Scripts --&gt</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/jquery-3.1.1.min.js')
+                                }}"<span class="nt">&gt;</span><span class="nt">&lt;/script</span><span class="nt">
+                                    &gt;</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/mdb.min.js')
+                                }}"<span class="nt">&gt;</span><span class="nt">&lt;/script</span><span class="nt">
+                                    &gt;</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/tether.js') }}"<span
+                                        class="nt">&gt;</span><span class="nt">&lt;/script</span><span class="nt">
+                                    &gt;</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/bootstrap.min.js')
+                                }}"<span class="nt">&gt;</span><span class="nt">&lt;/script</span><span class="nt">
+                                    &gt;</span></span><br>
+                            <span class="t1"><span class="nc">&lt!-- Bootstrap File Upload --&gt</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('bundles/positibemedia/bootstrap-fileupload/bootstrap-fileupload.js') }}"
+                                type="application/javascript"<span class="nt">&gt;</span><span class="nt">
+                                    &lt;/script</span><span class="nt">&gt;</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{
+                                asset('bundles/positibecore/js/init_form_collection.js') }}"
+                                type="application/javascript"<span class="nt">&gt;</span><span class="nt">
+                                    &lt;/script</span><span class="nt">&gt;</span></span><br>
+
+                            <span class="t1"><span class="nt">&lt;script</span> src="{{ asset('assets/js/backend.js')
+                                }}"<span class="nt">&gt;</span><span class="nt">&lt;/script</span><span class="nt">
+                                    &gt;</span></span><br>
+                            <span class="t1"><span class="nt">&lt;script&gt;</span>
+                                $(document).ready(function () {
+                                app.initFormCollection();
+                                });
+
+                                <span class="nt">&lt;/script</span>
+                            </span>
+                            <br>
+                            <span class="nt">&lt;\body&gt;</span>
+
+
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <h2 id="card_extras">Card Extras</h2>
+
+    <h4 id="card_extra_title">Card con título y opciones</h4>
+    <div class="row">
+        <div class="col-12">
+            <p>Permite crear un header para un card donde al crear el título con <code><span class="nt">&lt;div <span
+                class="na">class=</span><span class="s">"card-title"</span>&gt;&lt;/div&gt;</span> </code>. Dentro puedes
+            poner agregar <code><span class="nt">&lt;div <span class="na">class=</span><span class="s">"card-title-caption"</span>&gt;&lt;/div&gt;
+            </span></code> y <code><span class="nt">&lt;div <span class="na">class=</span><span class="s">"card-title-actions"</span>&gt;&lt;/div&gt;
+            </span></code> para poner el título y las opciones respectivamente :</p>
+            <div class="card">
+                <div class="card-header white">
+                    <div class="card-title text-muted text-uppercase text-right">
+                        <div class="card-title-caption">
+                            <h4><i class="fa fa-users"></i> Usuarios
+                                <small>Lista de usuarios</small>
+                            </h4>
+                        </div>
+                        <div class="card-title-actions">
+                            <a href="#"
+                               name="back" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Atras
+                            </a>
+
+                            <a href="#"
+                               class="btn btn-default btn-sm">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 id="card_extra_avatar">Card con imagen tipo avatar</h4>
+    <p></p>
+    <div class="row">
+        <div class="col-3">
+
+            <div class="card">
+                <div class="card-avatar">
+                    <img class="rounded-circle img-responsive"
+                         src="image/positibelabs_logotipo_background.png"
+                         alt="{{ user }}">
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">PositibeLabs</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">positibelabs@gmail.com</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Blog</a>
+                    <a href="#" class="card-link"><i class="fa fa-facebook"></i> Facebook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="grey lighten-3">
+    <div class="container-fluid">
+        <div class="row">
+
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="bootstrap-material-design-master/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="bootstrap-material-design-master/js/tether.min.js"></script>
+<script type="text/javascript" src="bootstrap-material-design-master/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap-material-design-master/js/mdb.min.js"></script>
+</body>
+
+</html>

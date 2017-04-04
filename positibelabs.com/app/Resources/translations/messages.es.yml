@@ -1,0 +1,7 @@
+article:
+    read_more: Leer más ...
+user:
+    table:
+        username: Nombre de usuario
+        email: Correo
+        enabled: Habilitado

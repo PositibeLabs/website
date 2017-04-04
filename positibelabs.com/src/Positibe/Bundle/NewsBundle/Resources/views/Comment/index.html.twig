@@ -1,0 +1,16 @@
+{% set extends = 'admin.html.twig' %}
+{% set icon = 'fa fa-comment' %}
+{% set menu_active = 'post' %}
+
+{% set attributes = {
+'name':{'main':true, 'filter': null, 'order': true},
+'email':{'filter': null, 'order': true},
+'url':{'filter': null, 'order': true},
+'message':{'filter': null, 'order': true},
+'post':{'order': true},
+'state':{'trans': 'post_comment.state.', 'filter': {'draft':'draft','review':'review','published':'published','rejected':'rejected','unpublished':'unpublished'},'order': true},
+} %}
+
+{% embed '@PositibeCore/Grid/index.html.twig' %}
+    {% block actions '' %}
+{% endembed %}

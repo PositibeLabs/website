@@ -1,0 +1,33 @@
+positibe_user:
+    resource: "@PositibeUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+_fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+_app_user:
+    resource: "@PositibeUserBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+_positibe_media:
+    resource: "@PositibeMediaBundle/Resources/config/routing.yml"
+    prefix: /public_media
+
+_positibe_cms:
+    resource: "@PositibeCmsBundle/Resources/config/routing.yml"
+    prefix: /admin
+
+_positibe_news:
+    resource: "@PositibeNewsBundle/Resources/config/routing.yml"
+    prefix: /admin
+
+_positibe_news_public:
+    resource: "@PositibeNewsBundle/Resources/config/routing_comment.yml"
+    prefix: /
+
+_sonata_cache:
+    resource: "@SonataCacheBundle/Resources/config/routing/cache.xml"

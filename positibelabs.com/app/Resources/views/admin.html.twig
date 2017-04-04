@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>{% block title '' %}</title>
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="{{ asset('backend/psb-mdbootstrap-theme/font-awesome-4.3.0/css/font-awesome.min.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/bootstrap.min.css') }}"
+          rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/mdb.min.css') }}"
+          rel="stylesheet">
+
+    <link href="{{ asset('backend/psb-mdbootstrap-theme/jquery-chosen/chosen.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet">
+    {#<link href="{{ asset('bundles/positibemedia/bootstrap-fileinput/bootstrap-fileinput.css') }}" rel="stylesheet">#}
+    <link href="{{ asset('bundles/positibemedia/jquery-file-upload/css/file-upload.all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/positibemedia/css/media.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="{{ asset('backend/psb-mdbootstrap-theme/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
+
+    <link href="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/css/style.css') }}"
+          rel="stylesheet">
+    <link href="{{ asset('backend/backend.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="blue-grey lighten-5">
+
+<header class="">
+    <nav class="top-nav blue-grey text-white darken-4 navbar navbar-toggleable-md bg-primary">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('homepage') }}">
+                <img src="{{ asset('backend/psb-mdbootstrap-theme/image/positibelabs_logotipo_background.png') }}"
+                     class="d-inline-block align-top z-depth-0 img-fluid " alt="PositibeLabs">
+                <strong class="green-text text-darken-3 flow-text">Positibe<span
+                            class="orange-text">Labs</span></strong>
+            </a>
+
+            <div class="collapse navbar-collapse" id="collapseEx2">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('admin_cms') }}" class="nav-link waves-effect waves-light">Inicio <span
+                                    class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item btn-group dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="dropdownMenu1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contenido
+                        </a>
+
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1">
+                            <a href="{{ path('positibe_page_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-files-o"></i> Páginas
+                            </a>
+                            <a href="{{ path('positibe_category_index') }}"
+                               class="dropdown-item waves-effect waves-light"><i class="fa fa-folder-o"></i> Categorías
+                            </a>
+                            <a href="{{ path('positibe_menu_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-sitemap"></i> Menus
+                            </a>
+                            <a href="{{ path('positibe_block_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-cubes"></i> Bloques
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item btn-group dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="dropdownMenu1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog
+                        </a>
+
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1">
+                            <a href="{{ path('positibe_post_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-thumb-tack"></i> Entradas
+                            </a>
+                            <a href="{{ path('positibe_post_collection_index') }}"
+                               class="dropdown-item waves-effect waves-light"><i class="fa fa-folder-o"></i> Categorías de entradas
+                            </a>
+                            <a href="{{ path('positibe_post_tag_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-tags"></i> Etiquetas
+                            </a>
+                            <a href="{{ path('positibe_post_comment_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-comment"></i> Comentarios
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item btn-group dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="dropdownMenu1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Configuración
+                        </a>
+
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1">
+                            <a href="{{ path('positibe_user_index') }}" class="dropdown-item waves-effect waves-light">
+                                <i class="fa fa-users"></i> User
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="dropdownMenu1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img style="max-width: 30px"
+                                 src="{{ display_image(app.user.avatar, {'imagine_filter':'image_thumbnail_small', 'default': asset('bundles/positibemedia/images/avatar.png')}) }}"
+                                 alt="{{ app.user }}" class="rounded-circle"> {{ app.user }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1">
+                            <a href="{{ path('fos_user_profile_show') }}"
+                               class="dropdown-item waves-effect waves-light"><i class="fa fa-user"></i> Perfil
+                            </a>
+                            <span class="dropdown-divider"></span>
+                            <a href="{{ path('fos_user_security_logout') }}"
+                               class="dropdown-item waves-effect waves-light"><i class="fa fa-key"></i> Cerrar sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    {% block body %}
+        <div class="main-wrapper page-content">
+            <div class="container-fluid">
+                <ol class="breadcrumb grey-text darken-3 col-sm-12">
+                    <li class="breadcrumb-item"><i class="fa fa-home"></i>
+                        <a href="{{ path('admin_cms') }}">Inicio</a>
+                    </li>
+                    {% block breadcrumb_list '' %}
+                </ol>
+            </div>
+            <div class="card">
+                {% block content '' -%}
+            </div>
+        </div>
+    {% endblock %}
+</main>
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            Powered
+            <a class="brown-text text-lighten-3" href="http://positibelabs.com">PositibeLabs</a>
+        </div>
+    </div>
+</footer>
+<!--  Scripts-->
+<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('backend/psb-mdbootstrap-theme/jquery-migrate.min.js') }}"></script>
+<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/tether.js') }}"></script>
+<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-material-design-master/js/mdb.min.js') }}"></script>
+<script src="{{ asset('backend/psb-mdbootstrap-theme/jquery-chosen/chosen.jquery.min.js') }}"></script>
+{# Bootstrap Toastr #}
+<script src="{{ asset('backend/psb-mdbootstrap-theme/bootstrap-toastr/toastr.min.js') }}"></script>
+{# Bootstrap Datetime picker #}
+<script type="text/javascript" src="{{ asset('backend/psb-mdbootstrap-theme/moment/min/moment.min.js') }}"></script>
+<script type="text/javascript"
+        src="{{ asset('backend/psb-mdbootstrap-theme/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script type="text/javascript"
+        src="{{ asset('backend/psb-mdbootstrap-theme/eonasdan-bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.es.js') }}"></script>
+{# Boostrap Fileupaload #}
+<script src="{{ asset('bundles/positibemedia/bootstrap-fileupload/bootstrap-fileupload.js') }}"
+        type="application/javascript"></script>
+<script src="{{ asset('bundles/positibecore/js/init_form_collection.js') }}" type="application/javascript"></script>
+<script src="{{ asset('bundles/positibecore/js/init_chosen.js') }}" type="application/javascript"></script>
+<script src="{{ asset('bundles/positibecore/js/init_datepickers.js') }}" type="application/javascript"></script>
+
+<script src="{{ asset('backend/backend.js') }}"></script>
+
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    $(document).ready(function () {
+//        $(".button-collapse").sideNav();
+        app.initFormCollection();
+        app.initDatePickers();
+        app.initChosen();
+
+        {% for flashMessage in app.session.flashBag.get('success') %}
+        toastr.info('{{ flashMessage.message is defined ? (flashMessage.message | trans(flashMessage.parameters, 'flashes')) : flashMessage | trans({}, 'flashes')}}', 'Aviso');
+        {% endfor %}
+        {% for flashMessage in app.session.flashBag.get('error') %}
+        toastr.error('{{ flashMessage.message is defined ? (flashMessage.message | trans(flashMessage.parameters, 'flashes')) : flashMessage | trans({}, 'flashes')  }}', 'Aviso');
+        {% endfor %}
+    });
+
+</script>
+{% block javascripts %}{% endblock %}
+</body>

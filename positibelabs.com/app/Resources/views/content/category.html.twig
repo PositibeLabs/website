@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% from 'content/_pagination.html.twig' import pagination %}
+
+{% block body %}
+    <section class="section">
+        <div class="divider-new section-heading">
+            <h2 class="h1-responsive">
+                <a href="{{ path(content) }}">{{ content.title }}</a>
+            </h2>
+        </div>
+        <div class="section-description">{{ content.body |raw }}</div>
+    </section>
+    {% for page in children %}
+        <article>
+
+            <h3>
+                <a href="{{ path(page) }}">{{ page.title }}</a>
+            </h3>
+            <span class="text-muted">
+                <i class="fa fa-calendar"></i> {{ page.publishStartDate | localizeddate('long', 'none') }}
+            </span>
+            <p>{{ page.body | striptags | truncate(1000) | raw  | nl2br}}</p>
+            <a href="{{ path(page) }}" class="btn btn-default">{{ 'article.read_more' | trans }}</a>
+        </article>
+        <hr>
+
+    {% endfor %}
+    {{ pagination(children) }}
+{% endblock %}

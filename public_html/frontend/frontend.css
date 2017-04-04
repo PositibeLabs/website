@@ -1,0 +1,61 @@
+.scrolling-navbar {
+    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out, height .5s ease-in-out, margin .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out, padding .5s ease-in-out, height .5s ease-in-out, margin .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out, height .5s ease-in-out, margin .5s ease-in-out;
+}
+
+/** blue-grey darken-4 **/
+.top-nav-collapse {
+    background-color: #263238 !important
+}
+
+.flex-center {
+    color: #fff;
+}
+
+.main-header .navbar {
+    margin-top: 20px;
+    height: 80px;
+}
+
+.main-header .navbar.top-nav-collapse {
+    height: 50px;
+    margin-top: 0;
+}
+
+.main-header a {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.main-header .navbar-brand {
+    margin-top: 5px;
+}
+
+main h1, main h2 {
+    text-transform: uppercase;
+    color: #4CAF50 !important;
+    margin-top: 2rem;
+}
+
+main h1 a, main h2 a, main h3 a {
+    color: #4CAF50 !important;
+}
+
+main h1:after, main h2:after {
+    content: " ";
+    display: block;
+    padding-top: 7px;
+    border-bottom: 2px solid #2E7D32;
+    width: auto;
+    margin: 0 auto;
+}
+
+.divider-new::after, .divider-new::before {
+    background-color: transparent;
+}
+
+.section .section-heading {
+    margin-bottom: 2rem;
+}
