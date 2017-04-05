@@ -1,21 +1,4 @@
 {
-    "repositories": [
-        {
-            "packagist": false
-        },
-        {
-            "type": "composer",
-            "url": "http://localhost:5800/composer_repository/"
-        },
-        {
-            "type": "composer",
-            "url": "http://localhost:5801/composer_repository/"
-        },
-        {
-            "type": "artifact",
-            "url": "/media/charly/Datos/www/composer/artifact/"
-        }
-    ],
     "name": "positibelabs/cms-edition",
     "license": "MIT",
     "type": "project",
@@ -43,8 +26,8 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "sonata-project/cache-bundle": "^2.3",
-        "sylius/resource": "^1.0.0-beta.2",
-        "sylius/resource-bundle": "^1.0",
+        "sylius/resource": "dev-master",
+        "sylius/resource-bundle": "dev-master",
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/polyfill-iconv": "^1.0",
